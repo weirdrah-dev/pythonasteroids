@@ -13,11 +13,12 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill((0,0,0,0))
+        player.update(dt)
         player.draw(screen)
 
         pygame.display.flip() # This updates the window every loop
         clock.tick(60)
-        dt = clock.tick() / 1000
+        dt = clock.get_time() / 1000
 
 if __name__ == "__main__": # Makes sure main() only runs when the file is run directly and not if imported as module
     main()
