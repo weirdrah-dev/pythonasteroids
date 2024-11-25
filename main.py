@@ -7,14 +7,19 @@ def main():
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
     dt = 0
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
     while True:
         for event in pygame.event.get(): # This is so that the exit button works on the window the program makes
             if event.type == pygame.QUIT:
                 return
         screen.fill((0,0,0,0))
-        player.update(dt)
-        player.draw(screen)
+        for u in updatable:
+            u.update(dt)
+        for d in drawable:
+            d.draw(screen)
 
         pygame.display.flip() # This updates the window every loop
         clock.tick(60)
